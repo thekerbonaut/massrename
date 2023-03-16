@@ -33,13 +33,8 @@ def send_commands(computer, creds, restart, queue):
        response=password+'\n',
     )
 
-
-    #TODO change commands after testing
-    cmd_rename = "sudo /usr/local/jamf/bin/jamf getComputerName"
-    cmd_recon = "sudo hostname"
-
-    #cmd_rename = "/usr/local/jamf/bin/jamf setComputerName -name " + new_name]
-    #cmd_recon = "/usr/local/jamf/bin/jamf recon"
+    cmd_rename = "/usr/local/jamf/bin/jamf setComputerName -name " + new_name
+    cmd_recon = "/usr/local/jamf/bin/jamf recon"
 
     #open ssh connection
     print('Connecting to ' + old_name)
