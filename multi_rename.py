@@ -19,7 +19,7 @@ def open_rename_list():
 
 def send_commands(computer, creds, restart, queue):
     result = ''
-    #set credential variables
+
     username = creds[0]
     password = creds[1]
 
@@ -85,13 +85,16 @@ def send_commands(computer, creds, restart, queue):
 
 def main():
     print("Welcome to the Mac Renaming Utility")
+    #get credentials, list of computers, and restart option
     creds = get_creds()
     computers = open_rename_list()
     restart = click.confirm('Would you like to restart the computers after renaming?', default=False)
 
+    #start a new process for each connection
     processes = []
     queue = multiprocessing.Queue()
     for computer in computers:
+        #connect to each computer and send commands
         p = multiprocessing.Process(target= send_commands, args=(computer, creds, restart, queue,))
         processes.append(p)
         p.start()
